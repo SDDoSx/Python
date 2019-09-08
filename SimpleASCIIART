@@ -1,0 +1,32 @@
+def gen_pattern(chars):
+#chars = 'ABCDEF'
+length = len(chars)
+def build_diamond(length):
+    dots = (length*2 - 1)*2 - 1
+    string = ''
+    string_list = []
+    for i in range(length):
+        string1 = ''
+        string += chars[i]
+        length1 = len(string)
+        for j in range(0, length1):
+            if j % 2 != 0:
+                string1 += chars[length -1 - j].center(3, '.')
+            else:
+                string1 += chars[length - 1 - j]
+        for k in range(i - 1, -1, -1):
+            if k % 2 != 0:
+                string1 += chars[length - 1 - k].center(3, '.')
+            else:
+                string1 += chars[length - 1 - k]
+        string1 = string1.center(dots, '.')
+        string_list.append(string1)
+    return string_list
+
+if __name__ == '__main__':
+    string_list = build_diamond(length)
+    print('\n'.join(string_list))
+    bottom_of_diamond_string_list = list(reversed(string_list))[1:]
+    print('\n'.join(bottom_of_diamond_string_list))
+    
+    
